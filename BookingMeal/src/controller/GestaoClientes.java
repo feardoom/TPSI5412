@@ -7,10 +7,14 @@ import tools.easyIO;
 
 public class GestaoClientes {
 	
-	private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+	private ArrayList<Cliente> clientes;
 	public static easyIO io = new easyIO();
 	
 	public GestaoClientes() {
+		clientes =new ArrayList<Cliente>(); 
+	}
+	
+	public void MenuClientes() {
 		int op;
 		do {
 			io.writeL("Escolha uma opcao");
@@ -55,7 +59,7 @@ public class GestaoClientes {
 			io.writeL("nome: " + cli.getNome());
 			io.writeL("morada: " + cli.getMorada());
 			io.writeL("email: " + cli.getEmail());
-			io.writeL("telefone: " + cli.getTelefone());
+			io.writeL("telefone: " + cli.getTelefone() + "\n");
 
 		}
 	}

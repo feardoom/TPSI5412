@@ -6,7 +6,9 @@ import model.*;
 
 public class GestaoReservas {
 	public ArrayList<Reserva> reservas;
-	public static easyIO io = new easyIO();
+	public GestaoRestaurantes GestaoRest = new GestaoRestaurantes();
+	public GestaoClientes GestaoClientes = new GestaoClientes();
+	private static easyIO io = new easyIO();
 	
 	public GestaoReservas() {
 		int op;
@@ -14,6 +16,8 @@ public class GestaoReservas {
 			io.writeL("Escolha uma opcao");
 			io.writeL("1. Reservar");
 			io.writeL("2. Listar Reservas");
+			io.writeL("3. Gestao Restaurantes");
+			io.writeL("4. Gestao Clientes");
 			io.writeL("0. Sair");
 			op = io.readN();
 			
@@ -24,29 +28,44 @@ public class GestaoReservas {
 				case 2:
 					//listarReservas();
 					break;
+				case 3:
+					GestaoRest.MenuRestaurantes();
+					break;
+				case 4:
+					GestaoClientes.MenuClientes();
+					break;
 			}
 		}while(op!=0);
 	}
 	
-	/*public void inserirReserva() {
+	public void inserirReserva() {
 		Reserva re = new Reserva(reservas.size());
+		int rest = 0;
+		io.writeL("Introduza o id do cliente");
+		re.setEmNomeDe(GestaoClientes.getById(io.readN()));
 		
-		io.writeL("Introduza o id do cliente"); 
-		re.setNome(io.readS());
+		io.writeL("Introduza o id do restaurante");
+		rest = io.readN();
+		re.setOnde(GestaoRest.getById(rest));
 		
-		io.writeL("Introduza a morada");
-		re.setMorada(io.readS());
+		String nome_prato;
+		Prato prato;
 		
-		io.writeL("Introduza o email");
-		re.setEmail(io.readS());
+		do {
+			io.writeL("Introduza o nome do prato ou introduza '0' para continurar");
+			nome_prato = io.readS();
+			prato = GestaoRest.getPratoByName(rest, nome_prato);
+			if (prato!=null) {
+				//ficou por aqui
+			}
+		}while(nome_prato!="0");
 		
-		io.writeL("Introduza o telefone");
-		cli.setTelefone(io.readN());
+		
 				
 		addCliente(cli);
 
 	}
-	
+	/*
 	public void listarReservas() {
 		io.writeL("Restaurantes/Pratos");
 		for(Cliente cli:clientes) {

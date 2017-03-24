@@ -12,6 +12,7 @@ public class Restaurante {
 	
 	public Restaurante(int id) {
 		this.id_restaurante = id;
+		pratos = new ArrayList<Prato>();
 	}
 
 	public Restaurante(int id, String nome, String morada, String contacto, String especialidade, ArrayList<Prato> pratos) {
@@ -63,8 +64,10 @@ public class Restaurante {
 		return pratos;
 	}
 
-	public void setPratos(ArrayList<Prato> pratos) {
-		this.pratos = pratos;
-	}	
+	public void addPrato(Prato prato) {
+		this.pratos.add(prato);
+	}
+	
+	
 	
 }

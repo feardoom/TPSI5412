@@ -6,10 +6,14 @@ import model.*;
 import tools.easyIO;
 
 public class GestaoRestaurantes {
-	private ArrayList<Restaurante> restaurantes = new ArrayList<Restaurante>();
+	private ArrayList<Restaurante> restaurantes;
 	public static easyIO io = new easyIO();
 	
 	public GestaoRestaurantes() {
+		restaurantes = new ArrayList<Restaurante>();
+	}
+	
+	public void MenuRestaurantes() {
 		int op;
 		do {
 			io.writeL("Escolha uma opcao");
@@ -71,6 +75,16 @@ public class GestaoRestaurantes {
 				
 			}
 		}
+	}
+	
+	public Prato getPratoByName(int res, String prato) {
+		Restaurante rest = this.getById(res);
+		for(Prato p:rest.getPratos()) {
+			if (p.getDescricao()==prato) {
+				return p;
+			}
+		}
+		return null;
 	}
 	
 	public Restaurante getById(int id) {
